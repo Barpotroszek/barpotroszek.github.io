@@ -105,13 +105,7 @@ async function captureFrame() {
   if (layout == "Kolumna") {
     context.drawImage(frame, margin, amount * (h + margin) + margin, w, h);
   } else {
-    context.drawImage(
-      frame,
-      margin + (amount % 2) * (w + margin),
-      margin + Math.floor(amount / 2) * (h + margin),
-      w,
-      h
-    );
+    context.drawImage(frame, margin + (amount % 2) * (w + margin), margin + Math.floor(amount / 2) * (h + margin), w, h);
   }
   amount += 1;
 
