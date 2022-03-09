@@ -1,0 +1,50 @@
+:root{
+  --radius: 1em;
+}
+
+body {
+  background-color: black;
+  display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#colors #btns{
+  display: flex;
+}
+
+#close, #minimalize{
+  position: absolute;
+  display: block;
+  font-size: .7em;
+  color: #1d1414;
+  cursor: pointer;
+  transition: color .2s;
+}
+
+#close{
+  right: 1em;
+  top: 1em;
+}
+
+#minimalize {
+  top: 0.17em;
+  right: 0.5em;
+}
+
+#minimalize::after {
+  content: "↗";
+}
+
+.minimalized > #minimalize::after {
+  content: "↙";
+  font-weight: 5;
+}
+
+#close:hover, #minimalize:hover {
+  color: #c41d1d;
+}

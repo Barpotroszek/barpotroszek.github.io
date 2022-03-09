@@ -1,0 +1,64 @@
+#mainDiv.minimalized {
+  position: absolute;
+  top: 0;
+  transform: scale(.7) translate(-25%, -10%);
+}
+
+#mainDiv {
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(154, 206, 12);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 1.5s;
+}
+
+#camera {
+  border: 2px solid green;
+  margin: 10px;
+  transform: scalex(-1);
+  display: block;
+  background-color: rgba(0, 0, 0, 0.678);
+}
+
+#preview {
+  transform: scale(0.4) translate(-75%, -75%);
+}
+
+#cameraPreview{
+  position: relative;
+}
+
+#CountDownMask{
+  --text-size: 1em;
+  color: blue;
+  position: absolute;
+  font-size: var(--text-size);
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid blue;
+  border-radius: 50%;
+
+  width: var(--radius);
+  height: var(--radius);
+}
+
+
+#CountDownMask::after{
+  font-size: inherit;
+  font-weight: bolder;
+  content: attr(data-content);
+  color: inherit;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

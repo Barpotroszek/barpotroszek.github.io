@@ -1,0 +1,49 @@
+#settings_prompt {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em;
+  font-size: 1.7em;
+  width: fit-content;
+  display: block;
+  /* border: 7px solid #adff2f; */
+  background-color: #228d88;
+}
+
+#settings_prompt > h2 {
+  padding: 0 1.5em;
+  margin-top: 0;
+  font-style: italic;
+  text-align: center;
+  text-decoration: underline;
+  margin-block-end: 0.5em;
+}
+
+.settings {
+  margin: 0.5em 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.settings#colors {
+  flex-direction: column;
+}
+
+.option {
+  margin: 0 0.3em;
+}
+
+.option > label {
+  transition: color 0.2s;
+}
+
+.option:hover > label {
+  color: #0000009d;
+}
+
+.option > input {
+  position: relative;
+}
