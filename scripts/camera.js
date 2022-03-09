@@ -71,7 +71,7 @@ function getGradient(context) {
   const gradient = context.createLinearGradient(0, 0, w, h);
   let color1 = color_picker_1.value;
   let color2 = color_picker_2.value;
-  gradient.addColorStop(0, color1);
+  gradient.addColorStop(0.5, color1);
   gradient.addColorStop(1, color2);
   return gradient;
 }
