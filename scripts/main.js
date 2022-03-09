@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-    var btn_close = document.getElementById("close");
+    window.btn_close = document.getElementById("close");
     console.log(btn_close)
     btn_close.addEventListener("click", ()=> {
         btn_close.parentElement.classList.add("hidden")
@@ -11,5 +11,5 @@ window.addEventListener("load", () => {
 })
 
 const displaySettings = () => {
-    btn_close.parentElement.classList.remove("hidden")
+    btn_close.parentElement.classList.toggle("hidden")
 }
