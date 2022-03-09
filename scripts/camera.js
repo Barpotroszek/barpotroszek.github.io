@@ -83,7 +83,6 @@ async function captureFrame() {
       layout = a.value;
       break;
     }
-  alert(layout);
   var context = canvas.getContext("2d");
   const img = new Image();
   if (amount) img.src = photo.getAttribute("src");
