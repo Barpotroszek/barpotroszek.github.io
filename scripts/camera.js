@@ -63,6 +63,7 @@ function clearPreview() {
   photo.setAttribute("src", data);
   amount = 0;
   captureButton.disabled = false;
+  document.getElementById("btnDownload").disabled = true;
 }
 
 function getGradient(context) {
@@ -124,6 +125,7 @@ async function makeShoot() {
         hideCountDownMask();
         captureFrame();
         if (amount < maxPhotos) captureButton.disabled = false;
+        if(amount > 2) document.getElementById("btnDownload").disabled = false;
       }, 1000);
       window.clearInterval(countDown);
     }
