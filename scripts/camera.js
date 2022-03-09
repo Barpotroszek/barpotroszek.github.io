@@ -105,6 +105,8 @@ async function captureFrame() {
 
 async function makeShoot() {
   let a = 5;
+  captureButton.disabled = true;
+  setCountdownContent(`${a--}`);
   const countDown = setInterval(function () {
     let text = `${a--}`;
     if (a <= 0) {
@@ -112,6 +114,7 @@ async function makeShoot() {
       setTimeout(() => {
         hideCountDownMask();
         captureFrame();
+        captureButton.disabled = false;
       }, 1000);
       window.clearInterval(countDown);
     }
