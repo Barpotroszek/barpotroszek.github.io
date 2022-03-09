@@ -110,7 +110,6 @@ async function captureFrame() {
 
   var data = canvas.toDataURL("image/png");
   photo.setAttribute("src", data);
-  if (amount >= maxPhotos) captureButton.disabled = true;
 }
 
 async function makeShoot() {
@@ -124,7 +123,7 @@ async function makeShoot() {
       setTimeout(() => {
         hideCountDownMask();
         captureFrame();
-        captureButton.disabled = false;
+        if (amount < maxPhotos) captureButton.disabled = false;
       }, 1000);
       window.clearInterval(countDown);
     }
