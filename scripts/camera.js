@@ -77,13 +77,18 @@ function getGradient(context) {
 }
 
 async function captureFrame() {
+  let layout;
+  for (const a of document.getElementsByName("layout"))
+    if (a.checked) {
+      layout = a.value;
+      break;
+    }
+  alert(layout);
   var context = canvas.getContext("2d");
   const img = new Image();
   if (amount) img.src = photo.getAttribute("src");
-  amount += 1;
-  canvas.width = w + 2 * margin;
-  canvas.height = amount * (h + margin) + margin;
-  //  if(amount) img.src = "http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcTob4dz1DwLi-lZ3_c7tZHcTggUjy4ulpC6QOFR-j_2qWyZ1fIIfrEPQxp9zPgUuA0maqbepKjZRTSco46PfiA";
+  canvas.width = layout == "Kolumna" ? w + 2 * margin : margin + 2*(margin+w);
+  canvas.height = layout == "Kolumna" ? margin +(amount + 1) * (h + margin) : margin + 2*(margin+h);
 
   context.fillStyle = getGradient(context);
   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -96,7 +101,19 @@ async function captureFrame() {
   frameCtx.scale(-1, 1);
   frameCtx.drawImage(camDiv, 0, 0, -w, h);
   frameCtx.restore();
-  context.drawImage(frame, margin, (amount - 1) * (h + margin) + margin, w, h);
+
+  if (layout == "Kolumna") {
+    context.drawImage(frame, margin, amount * (h + margin) + margin, w, h);
+  } else {
+    context.drawImage(
+      frame,
+      margin + (amount % 2) * (w + margin),
+      margin + Math.floor(amount / 2) * (h + margin),
+      w,
+      h
+    );
+  }
+  amount += 1;
 
   var data = canvas.toDataURL("image/png");
   photo.setAttribute("src", data);
@@ -124,7 +141,7 @@ async function makeShoot() {
 }
 
 /**
- * TODO: CountDown
+ ** TODO: CountDown
  * TODO: Downloading...
  * TODO: Zmienić wszystkie eventy przycisków na addEventListener
  ** TODO: Bakcground color picker
