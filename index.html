@@ -1,51 +1,10 @@
 <!DOCTYPE html>
-
 <head>
-    <title>Coś jak fotobudka</title>
-    <link rel="stylesheet" href="style/camera.css">
-    <link rel="stylesheet" href="style/settings.css">
-    <link rel="stylesheet" href="style/main.css">
-    <script src="scripts/main.js"></script>
-    <script src="scripts/camera.js"></script>
+    <title>Lesson CountDown</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
 </head>
-
 <body>
-    <div id="settings_prompt" class="hidden">
-        <span id="close">X</span>
-        <h2>Ustawienia</h2>
-        <div id="layout" class="settings">
-            Wybierz układ:
-            <span class="option"><input type="radio" name="layout" id="column" value="Kolumna" checked><label
-                    for="column">Kolumna</label></span>
-            <span class="option"><input type="radio" name="layout" id="fourbyfour" value="2x2"><label
-                    for="twobytwo">2x2</label></span>
-        </div>
-        <div id="colors" class="settings">
-            <span class="option">Kolor pierwszy: </label><input id="color1" type="color" value="#fe2a2a"></span>
-            <span class="option">Kolor drugi: </label><input id="color2" type="color" value="#00e4f5"></span>
-        </div>
-    </div>
-    <div id="mainDiv">
-        <div id="cameraPreview">
-            <video id="camera"></video>
-            <span id="CountDownMask" class="hidden" data-content=""></span>
-        </div>
-        
-        <div id="btns">
-            <button id="btnStart" onclick="startStream()">Uruchom kamerę</button>
-            <button id="btnCapture" onclick="makeShoot()">Walnij fote</button>
-            <button id="btnClear" onclick="clearPreview()">Wyczyść</button>
-            <button id="btnSettings" onclick="displaySettings()">Ustawienia</button>
-            <button id="btnDownload" onclick="download()" disabled>Pobierz fote</button>
-            <button id="minimalize"></button>
-        </div>
-        <div id="colors">
-        </div>
-    </div>
-    <canvas id="preview">
-        <img id="photo" alt="The screen capture will appear in this box.">
-
-    </canvas>
+    <h1 id="time"></h1>
 </body>
-
 </html>
