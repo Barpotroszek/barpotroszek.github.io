@@ -9,6 +9,7 @@ window.addEventListener("load", () => {
   var photo = document.getElementById("photo");
   window.canvas = document.querySelector("canvas");
   var startButton = document.getElementById("btnStart");
+  var download = document.getElementById("download"); 
   window.captureButton = document.getElementById("btnCapture");
   startButton.onclick = startStream;
 });
@@ -126,6 +127,8 @@ async function captureFrame() {
 
   var data = canvas.toDataURL("image/png");
   photo.setAttribute("src", data);
+  download.setAttribute("href", data);
+  
 }
 
 async function makeShoot() {
