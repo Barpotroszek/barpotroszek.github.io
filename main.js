@@ -44,4 +44,5 @@ function updateTime(){
 window.onload = () => {
   updateTime()
   setInterval(updateTime, 1000)
+  document.getElementById("btnMedia").onclick = startStream();
 };

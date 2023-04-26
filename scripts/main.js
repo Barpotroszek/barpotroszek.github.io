@@ -13,11 +13,3 @@ window.addEventListener("load", () => {
 const displaySettings = () => {
     btn_close.parentElement.classList.toggle("hidden")
 }
-
-const download = () => {
-    const canv = document.getElementById("preview");
-    const a = document.createElement("a");
-    a.href = canv.toDataURL("image/png");
-    a.download = prompt("Jak nazwać plik?", "fota z budki") + ".png";
-    a.click();
-}

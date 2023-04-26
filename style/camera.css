@@ -25,6 +25,8 @@
   transform: scalex(-1);
   display: block;
   background-color: rgba(0, 0, 0, 0.678);
+  max-height: 40em;
+  width: fit-content;
 }
 
 #preview {

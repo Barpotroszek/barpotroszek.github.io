@@ -11,3 +11,7 @@ body{
 body * { 
     text-align: center;
 }
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.411);
+}

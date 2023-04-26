@@ -10,6 +10,7 @@ window.addEventListener("load", () => {
   window.canvas = document.querySelector("canvas");
   var startButton = document.getElementById("btnStart");
   window.captureButton = document.getElementById("btnCapture");
+  startButton.onclick = startStream;
 });
 
 function setRadius(val) {
@@ -24,19 +25,24 @@ async function startStream() {
     video: true,
     audio: false,
   };
-
-  const stream = await navigator.mediaDevices.getUserMedia(constraints);
-  const video = stream.getVideoTracks()[0];
-  var { height, width } = video.getSettings();
-  w = width;
-  h = height;
-  console.log(height, width);
-  camDiv.style.height = `${h}px`;
-  camDiv.style.width = `${w}px`;
-  camDiv.srcObject = stream;
-  camDiv.play();
-  window.camDiv = camDiv;
-  setRadius(Math.floor(h / 2));
+  try {
+    let prom = navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((stream) => {
+        alert("stream: " + stream);
+        const video = stream.getVideoTracks()[0];
+        var { height, width } = video.getSettings();
+        w = width;
+        h = height;
+        camDiv.srcObject = stream;
+        camDiv.play();
+        window.camDiv = camDiv;
+        setRadius(Math.floor(h / 2));
+      });
+  } catch (error) {
+    alert("got some error:" + error);
+    alert("zatem sori, ale pewnie nie pójdzie...")
+  }
 }
 
 const hideCountDownMask = () =>
@@ -63,7 +69,6 @@ function clearPreview() {
   photo.setAttribute("src", data);
   amount = 0;
   captureButton.disabled = false;
-  document.getElementById("btnDownload").disabled = true;
 }
 
 function getGradient(context) {
@@ -87,8 +92,12 @@ async function captureFrame() {
   var context = canvas.getContext("2d");
   const img = new Image();
   if (amount) img.src = photo.getAttribute("src");
-  canvas.width = layout == "Kolumna" ? w + 2 * margin : margin + 2*(margin+w);
-  canvas.height = layout == "Kolumna" ? margin +(amount + 1) * (h + margin) : margin + 2*(margin+h);
+  canvas.width =
+    layout == "Kolumna" ? w + 2 * margin : margin + 2 * (margin + w);
+  canvas.height =
+    layout == "Kolumna"
+      ? margin + (amount + 1) * (h + margin)
+      : margin + 2 * (margin + h);
 
   context.fillStyle = getGradient(context);
   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -105,7 +114,13 @@ async function captureFrame() {
   if (layout == "Kolumna") {
     context.drawImage(frame, margin, amount * (h + margin) + margin, w, h);
   } else {
-    context.drawImage(frame, margin + (amount % 2) * (w + margin), margin + Math.floor(amount / 2) * (h + margin), w, h);
+    context.drawImage(
+      frame,
+      margin + (amount % 2) * (w + margin),
+      margin + Math.floor(amount / 2) * (h + margin),
+      w,
+      h
+    );
   }
   amount += 1;
 
@@ -125,7 +140,6 @@ async function makeShoot() {
         hideCountDownMask();
         captureFrame();
         if (amount < maxPhotos) captureButton.disabled = false;
-        if(amount > 2) document.getElementById("btnDownload").disabled = false;
       }, 1000);
       window.clearInterval(countDown);
     }
